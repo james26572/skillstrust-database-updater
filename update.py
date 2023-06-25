@@ -83,13 +83,19 @@ def update_database(country):
 
 def job():
     # Schedule the function to run every Sunday at 9 PM
-    schedule.every().monday.at("00:05").do(update_database_for_countries)
+    schedule.every().sunday.at("21:00").do(update_database_for_countries)
 
 if __name__ == "__main__":
+    print("start")
+    # Run the scheduled job immediately
+    update_database_for_countries()
+
     # Schedule the job
     job()
 
     # Keep the script running
     while True:
         schedule.run_pending()
+        time.sleep(1)
+
         
