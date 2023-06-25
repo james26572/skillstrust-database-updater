@@ -5,7 +5,7 @@ from new_jobs import get_new_jobs_data
 import schedule
 
 def update_database_for_countries():
-    print(datetime.now())
+    
     print("DELETING CLOSED POSITIONS")
     delete_closed_positions()
     countries_in_europe = [
@@ -19,14 +19,14 @@ def update_database_for_countries():
     "Romania", "Russia", "San Marino", "Serbia", "Slovakia", "Slovenia", "Spain",
     "Sweden", "Switzerland", "Ukraine", "United Kingdom", "Vatican City"
 ]
-    print(datetime.now())
+   
     print("UPDATING DATABASE WITH NEW JOBS")
     for country in countries_in_europe:
         update_database(country)
         print("Finished for country : ",country)
 
     # flag companies who have had 5 open positions at some point and currently not in flag table
-    print(datetime.now())
+    
     print("FLAGGING COMPANIES")
     flag()
 
