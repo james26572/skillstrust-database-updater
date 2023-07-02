@@ -16,7 +16,8 @@ def update_database_for_countries():
       "Ireland", "Italy", "Kosovo",
     "Latvia", "Liechtenstein", "Lithuania", "Luxembourg", "Malta", "Moldova", "Monaco",
     "Montenegro", "Netherlands", "North Macedonia", "Norway", "Poland", "Portugal",
-    "Romania", "Russia", "San Marino", "Serbia", "Slovakia", "Slovenia", "Spain",
+    "Romania", "Russia", "San Marino", "Serbia", "Slovakia", "Slovenia",
+      "Spain",
     "Sweden", "Switzerland", "Ukraine", "United Kingdom", "Vatican City"
 ]
    
@@ -29,6 +30,7 @@ def update_database_for_countries():
     
     print("FLAGGING COMPANIES")
     flag()
+    print("Finished updating database for this week")
 
 
 
@@ -57,7 +59,7 @@ def update_database(country):
 
     sql_query = """
     INSERT INTO job_data (linkedin_job_url_cleaned, company_name,linkedin_company_url_cleaned, job_title, job_location, posted_date, normalized_company_name,level,category,job_language)
-    VALUES (%s, %s, %s, %s, %s, %s, %s,%s,%s);
+    VALUES (%s, %s, %s, %s, %s, %s, %s,%s,%s,%s);
     """
     for job in new_jobs:
         url = job['linkedin_job_url_cleaned']

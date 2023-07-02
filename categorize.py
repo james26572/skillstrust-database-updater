@@ -1,6 +1,6 @@
 import openai
 
-openai.api_key = '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'
+openai.api_key = "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"
 
 def generate_prompt(job_title, category_list):
     category_options = ', '.join([f'"{category}"' for category in category_list])
@@ -18,4 +18,7 @@ def classify_job_title(job_title):
         temperature=0.5  # Adjust the temperature to control randomness
     )
     category = response.choices[0].text.strip()
-    return category
+
+    if category in categories:
+        return category
+    return 'Other'

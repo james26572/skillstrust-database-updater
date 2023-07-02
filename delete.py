@@ -1,7 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 import psycopg2
+import requests
+import time
 
+MAX_RETRIES = 3
+RETRY_DELAY = 5  # seconds
 
 
 
@@ -28,7 +32,20 @@ def delete_closed_positions():
 
     for result in results:
         job_url = result[0]
-        r = requests.get(job_url)
+        retry_count = 0
+        while retry_count < MAX_RETRIES:
+            try:
+                r = requests.get(job_url)
+                break
+            except requests.exceptions.ConnectionError as e:
+                print(f"Connection error: {e}")
+                retry_count += 1
+                if retry_count == MAX_RETRIES:
+                    print("Max retries exceeded. Unable to establish a connection.")
+                    return
+                print(f"Retrying in {RETRY_DELAY} seconds...")
+                time.sleep(RETRY_DELAY)
+        
 
 
         if r.status_code == 404 or pos_closed(r):
