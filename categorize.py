@@ -1,6 +1,6 @@
 import openai
-
-openai.api_key = "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"
+import os
+openai.api_key = os.getenv("OPEN_AI_KEY")
 
 def generate_prompt(job_title, category_list):
     category_options = ', '.join([f'"{category}"' for category in category_list])

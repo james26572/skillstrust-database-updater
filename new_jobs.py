@@ -1,5 +1,6 @@
 import requests
 from categorize import classify_job_title
+from add_language import classify_title_language
 
 def get_new_jobs_data(country):
     
@@ -54,8 +55,9 @@ def get_new_jobs_data(country):
                 job_url = job_info["job_url"]
                 level = get_level(job_url)
                 job_title = job_info["job_title"]
+                job_title = classify_job_title(job_title)
                 category = add_category(job_title)
-                job_language = classify_job_title(job_title)
+                job_language = classify_title_language(job_title)
                 
 
                 job_info["level"] = level

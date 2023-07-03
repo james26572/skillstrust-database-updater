@@ -2,6 +2,7 @@ import datetime
 from delete import delete_closed_positions
 from flagged import flag
 from new_jobs import get_new_jobs_data
+
 import schedule
 
 def update_database_for_countries():
