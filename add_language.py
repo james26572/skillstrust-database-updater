@@ -3,7 +3,11 @@
 
 import openai
 import os
-token = "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"
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
 openai.api_key = os.getenv("OPEN_AI_KEY")
 def classify_title_language(job_title):
     prompt = '''State the language that the job title, {job_title} is in. Just state the language,
@@ -45,3 +49,4 @@ for i,row in enumerate(rows):
     conn.commit()
 cursor.close()
 conn.close()
+
